@@ -284,10 +284,19 @@ const BillingDashboard = () => {
             </div>
 
             <div className="qr-buttons">
-              <a href={qrCodeData.pdf_url} target="_blank" rel="noopener noreferrer" className="view-pdf-btn">
+              <a 
+                href={qrCodeData.direct_url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="view-pdf-btn"
+              >
                 View PDF
               </a>
-              <a href={qrCodeData.qr_url} download className="download-qr-btn">
+              <a 
+                href={qrCodeData.qr_url} 
+                download 
+                className="download-qr-btn"
+              >
                 Download QR
               </a>
             </div>
@@ -410,10 +419,11 @@ const BillingDashboard = () => {
         statement_id: statementId,
         expiry_days: 30 // Longer expiry for patient use
       });
-
-      // Get QR code URL
+      
+      // Get QR code URL and direct URL for PDF viewing
       const qrCodeUrl = response.data.data.qr_url;
-
+      const directUrl = response.data.data.direct_url;
+      
       // Open a new window with just the QR code for printing
       const printWindow = window.open('', '_blank');
       printWindow.document.write(`
@@ -444,6 +454,18 @@ const BillingDashboard = () => {
                 margin: 20px auto;
                 text-align: center;
               }
+              .view-link {
+                margin-top: 15px;
+                display: block;
+                text-align: center;
+              }
+              .view-link a {
+                color: #3474eb;
+                text-decoration: none;
+              }
+              .view-link a:hover {
+                text-decoration: underline;
+              }
               @media print {
                 .no-print {
                   display: none;
@@ -463,6 +485,9 @@ const BillingDashboard = () => {
             <div class="instructions">
               <p>Scan this QR code to view your Statement of Account.</p>
               <p>This code will expire on ${new Date(response.data.data.expires_at).toLocaleDateString()}.</p>
+              <div class="view-link">
+                <a href="${directUrl}" target="_blank">View Statement Directly</a>
+              </div>
             </div>
             <div class="no-print">
               <button onclick="window.print()">Print QR Code</button>
@@ -471,7 +496,7 @@ const BillingDashboard = () => {
         </html>
       `);
       printWindow.document.close();
-
+      
       setLoading(false);
     } catch (err) {
       setError('Failed to generate QR code for printing. Please try again.');
@@ -479,7 +504,6 @@ const BillingDashboard = () => {
       console.error('Error generating QR code for printing:', err);
     }
   };
-
   const handleCloseQrGenerator = () => {
     setShowQrGenerator(false);
     setSelectedStatement(null);
@@ -1023,10 +1047,19 @@ const BillingDashboard = () => {
               </div>
 
               <div className="qr-buttons">
-                <a href={qrCodeData.pdf_url} target="_blank" rel="noopener noreferrer" className="view-pdf-btn">
+                <a 
+                  href={qrCodeData.direct_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="view-pdf-btn"
+                >
                   View PDF
                 </a>
-                <a href={qrCodeData.qr_url} download className="download-qr-btn">
+                <a 
+                  href={qrCodeData.qr_url} 
+                  download 
+                  className="download-qr-btn"
+                >
                   Download QR
                 </a>
               </div>
