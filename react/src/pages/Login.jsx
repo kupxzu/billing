@@ -1,9 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
+  // Add useEffect to ensure proper styling on mount
+  useEffect(() => {
+    document.body.style.margin = 0;
+    document.body.style.padding = 0;
+    document.body.style.width = '100%';
+    document.body.style.height = '100vh';
+    document.documentElement.style.margin = 0;
+    document.documentElement.style.padding = 0;
+    document.documentElement.style.width = '100%';
+    document.documentElement.style.height = '100vh';
+    
+    return () => {
+      document.body.style.margin = '';
+      document.body.style.padding = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      document.documentElement.style.margin = '';
+      document.documentElement.style.padding = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.height = '';
+    };
+  }, []);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,10 +47,18 @@ const Login = () => {
       setError('');
       setLoading(true);
       
-      await login(email, password);
-      navigate('/admin/dashboard');
+      const user = await login(email, password);
+      
+      // Redirect based on user role
+      if (user.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else if (user.role === 'patient') {
+        navigate('/patient/dashboard');
+      } else {
+        throw new Error('Invalid user role');
+      }
     } catch (err) {
-      setError('Invalid email or password');
+      setError(err.message || 'Invalid email or password');
     } finally {
       setLoading(false);
     }
@@ -36,7 +67,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Admin Login</h2>
+        <h2>Medical Center Portal</h2>
         
         {error && <div className="error-message">{error}</div>}
         
@@ -76,8 +107,13 @@ const Login = () => {
         
         <div className="login-help">
           <p>Use the following credentials for testing:</p>
-          <p>Email: admin@example.com</p>
-          <p>Password: admin123</p>
+          <div className="credentials-box">
+            <div className="credential">
+              <strong>Admin:</strong>
+              <p>Email: admin@example.com</p>
+              <p>Password: admin123</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

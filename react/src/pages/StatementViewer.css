@@ -1,0 +1,354 @@
+.statement-viewer {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 2rem;
+  }
+  
+  .statement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+  }
+  
+  .statement-header h1 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1.75rem;
+  }
+  
+  .back-btn {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    padding: 0.625rem 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .back-btn:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+  }
+  
+  .statement-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .statement-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 2rem;
+  }
+  
+  .info-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #1e293b;
+  }
+  
+  .info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .info-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .info-row label {
+    font-weight: 500;
+    color: #64748b;
+    width: 120px;
+  }
+  
+  .info-row p {
+    margin: 0;
+    color: #1e293b;
+  }
+  
+  .status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .status-badge.issued {
+    background-color: #def7ec;
+    color: #03543f;
+  }
+  
+  .status-badge.paid {
+    background-color: #e1f0ff;
+    color: #1e429f;
+  }
+  
+  .status-badge.overdue {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .status-badge.draft {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+  
+  .amount-display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    align-items: baseline;
+  }
+  
+  .currency {
+    font-size: 1.5rem;
+    margin-right: 0.25rem;
+  }
+  
+  .services-table {
+    margin-bottom: 2rem;
+  }
+  
+  .services-table h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #1e293b;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    text-align: left;
+    padding: 0.75rem;
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+  
+  .amount-cell {
+    text-align: right;
+    font-weight: 500;
+  }
+  
+  .total-row {
+    font-weight: 700;
+  }
+  
+  .total-row td {
+    border-top: 2px solid #e2e8f0;
+    color: #1e293b;
+  }
+  
+  .no-services {
+    color: #64748b;
+    font-style: italic;
+    padding: 1rem 0;
+  }
+  
+  .payment-info {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f8fafc;
+    border-radius: 4px;
+  }
+  
+  .payment-info h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #1e293b;
+  }
+  
+  .payment-info p {
+    margin: 0 0 1rem 0;
+    color: #334155;
+    line-height: 1.6;
+  }
+  
+  .payment-methods h4 {
+    font-size: 1rem;
+    color: #1e293b;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  
+  .payment-methods ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #334155;
+  }
+  
+  .payment-methods li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .statement-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .print-btn, .download-btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  
+  .print-btn {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .print-btn:hover {
+    background-color: #e2e8f0;
+  }
+  
+  .download-btn {
+    background-color: #3474eb;
+    color: white;
+    border: none;
+  }
+  
+  .download-btn:hover {
+    background-color: #2563eb;
+  }
+  
+  /* Loading and Error States */
+  .statement-viewer-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(52, 116, 235, 0.3);
+    border-radius: 50%;
+    border-top-color: #3474eb;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .statement-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .error-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .statement-error h2 {
+    color: #1e293b;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .statement-error p {
+    color: #64748b;
+    margin: 0 0 1.5rem 0;
+    max-width: 500px;
+  }
+  
+  /* Print Styles */
+  @media print {
+    .statement-viewer {
+      background-color: white;
+      padding: 0;
+    }
+    
+    .statement-header, .statement-actions, .back-btn {
+      display: none;
+    }
+    
+    .statement-container {
+      box-shadow: none;
+      padding: 0;
+    }
+    
+    @page {
+      margin: 1.5cm;
+    }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .statement-info {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .statement-container {
+      padding: 1.5rem;
+    }
+    
+    .statement-viewer {
+      padding: 1rem;
+    }
+    
+    th, td {
+      padding: 0.5rem;
+    }
+    
+    .amount-display {
+      font-size: 2rem;
+    }
+  }
